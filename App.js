@@ -16,15 +16,26 @@ export default class App extends React.Component {
         <TextInput
           style={{ height: 40, width: 300 }}
           onChangeText={(text) => this.setState({ word: text })}
+          value={this.state.word}
         />
-        <Button
-          raised
-          onPress={() => {
-            Expo.Speech.speak(this.state.word);
-          }}
-          icon={{ name: 'mic' }}
-          backgroundColor='black'
-          title='発音' />
+        <View style={{ flexDirection: 'row' }}>
+          <Button
+            raised
+            onPress={() => {
+              Expo.Speech.speak(this.state.word);
+            }}
+            icon={{ name: 'mic' }}
+            backgroundColor='black'
+            title='発音' />
+          <Button
+            raised
+            onPress={() => {
+              this.setState({ word: '' });
+            }}
+            icon={{ name: 'clear' }}
+            backgroundColor='black'
+            title='クリア' />
+        </View>
       </View>
     );
   }
